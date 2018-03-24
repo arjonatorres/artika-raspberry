@@ -22,7 +22,15 @@ SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{dev_id}=="0x0", ATTR{type}=
 ```
 
 ## Instalar y configurar Apache
-Instalar apache con el siguiente comando: `sudo apt install apache2`
+Instalar apache con el siguiente comando: `sudo apt install apache2`.
+
+Crear un enlace simbólico dentro de `/var/www/html` que apunte al directorio `web` de este proyecto. Usando el comando: `sudo ln -s $HOME/web .`
+
+Cambiar el document root en el archivo `/etc/apache2/sites-available/000-default.conf` para que apunte al enlace simbólico que acabamos de crear:
+```
+DocumentRoot /var/www/html/web
+```
+
 Cambiar el puerto por defecto `80` por el `8082` en los siguientes archivos:
 * `/etc/apache2/ports.conf`
 ```
